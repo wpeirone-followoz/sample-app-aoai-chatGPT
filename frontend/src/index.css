@@ -10,11 +10,10 @@ body {
 }
 
 html {
-  background: #f2f2f2;
+  background: #fff;
+  color: #242424;
   font-family:
-    'Segoe UI',
-    'Segoe UI Web (West European)',
-    'Segoe UI',
+    'Roboto',
     -apple-system,
     BlinkMacSystemFont,
     Roboto,
@@ -22,6 +21,10 @@ html {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.title-font {
+  font-family: 'Oswald';
 }
 
 #root {

@@ -136,6 +136,7 @@ export type UI = {
   chat_description: string
   logo?: string
   chat_logo?: string
+  chat_gPlogo?: string
   show_share_button?: boolean
   show_chat_history_button?: boolean
 }

@@ -13,7 +13,9 @@ import { nord } from 'react-syntax-highlighter/dist/esm/styles/prism'
 
 import styles from './Chat.module.css'
 import Contoso from '../../assets/Contoso.svg'
+import DynamicsGP from '../../assets/DynamicsGP.png'
 import { XSSAllowTags } from '../../constants/sanatizeAllowables'
+
 
 import {
   ChatMessage,
@@ -38,6 +40,7 @@ import { QuestionInput } from "../../components/QuestionInput";
 import { ChatHistoryPanel } from "../../components/ChatHistory/ChatHistoryPanel";
 import { AppStateContext } from "../../state/AppProvider";
 import { useBoolean } from "@fluentui/react-hooks";
+import Questions from '../../components/Questions/Questions';
 
 const enum messageStatus {
   NotRunning = 'Not Running',
@@ -63,7 +66,8 @@ const Chat = () => {
   const [clearingChat, setClearingChat] = useState<boolean>(false)
   const [hideErrorDialog, { toggle: toggleErrorDialog }] = useBoolean(true)
   const [errorMsg, setErrorMsg] = useState<ErrorMessage | null>()
-  const [logo, setLogo] = useState('')
+  const [logo, setLogo] = useState('') 
+  const [gPlogo, setGpLogo] = useState('') 
 
   const errorDialogContentProps = {
     type: DialogType.close,
@@ -108,6 +112,7 @@ const Chat = () => {
   useEffect(() => {
     if (!appStateContext?.state.isLoading) {
       setLogo(ui?.chat_logo || ui?.logo || Contoso)
+      setGpLogo(DynamicsGP)
     }
   }, [appStateContext?.state.isLoading])
 
@@ -747,7 +752,7 @@ const Chat = () => {
             className={styles.chatIcon}
             style={{ color: 'darkorange', height: '200px', width: '200px' }}
           />
-          <h1 className={styles.chatEmptyStateTitle}>Authentication Not Configured</h1>
+          <h1 className={styles.chatEmptyStateTitle + ' ' + 'title-font'}>Authentication Not Configured</h1>
           <h2 className={styles.chatEmptyStateSubtitle}>
             This app does not have authentication configured. Please add an identity provider by finding your app in the{' '}
             <a href="https://portal.azure.com/" target="_blank">
@@ -774,8 +779,11 @@ const Chat = () => {
             {!messages || messages.length < 1 ? (
               <Stack className={styles.chatEmptyState}>
                 <img src={logo} className={styles.chatIcon} aria-hidden="true" />
-                <h1 className={styles.chatEmptyStateTitle}>{ui?.chat_title}</h1>
-                <h2 className={styles.chatEmptyStateSubtitle}>{ui?.chat_description}</h2>
+                <h1 className={styles.chatEmptyStateTitle + ' ' + 'title-font'}>{ui?.chat_title}</h1>
+                <h2 className={styles.chatEmptyStateSubtitle + ' ' + 'title-font'}>{ui?.chat_description}</h2>
+                <img src={gPlogo} className={styles.chatGPIcon} aria-hidden="true" />
+
+                <Questions></Questions>
               </Stack>
             ) : (
               <div className={styles.chatMessageStream} style={{ marginBottom: isLoading ? '40px' : '0px' }} role="log">
@@ -860,10 +868,10 @@ const Chat = () => {
                       root: {
                         color: '#FFFFFF',
                         background:
-                          'radial-gradient(109.81% 107.82% at 100.1% 90.19%, #0F6CBD 33.63%, #2D87C3 70.31%, #8DDDD8 100%)'
+                          '#002B75'
                       },
                       rootDisabled: {
-                        background: '#F0F0F0'
+                        background: '#EBF0F8'
                       }
                     }}
                     className={styles.newChatIcon}
@@ -885,10 +893,10 @@ const Chat = () => {
                     root: {
                       color: '#FFFFFF',
                       background:
-                        'radial-gradient(109.81% 107.82% at 100.1% 90.19%, #0F6CBD 33.63%, #2D87C3 70.31%, #8DDDD8 100%)'
+                        '#002B75'
                     },
                     rootDisabled: {
-                      background: '#F0F0F0'
+                      background: '#EBF0F8'
                     }
                   }}
                   className={

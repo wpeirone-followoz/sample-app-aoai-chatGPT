@@ -7,6 +7,7 @@ import { CosmosDBStatus } from '../../api'
 import Contoso from '../../assets/Contoso.svg'
 import { HistoryButton, ShareButton } from '../../components/common/Button'
 import { AppStateContext } from '../../state/AppProvider'
+import Oz from '../../assets/Oz.png'
 
 import styles from './Layout.module.css'
 
@@ -18,6 +19,7 @@ const Layout = () => {
   const [hideHistoryLabel, setHideHistoryLabel] = useState<string>('Hide chat history')
   const [showHistoryLabel, setShowHistoryLabel] = useState<string>('Show chat history')
   const [logo, setLogo] = useState('')
+  const [oZlogo, setOzLogo] = useState('')
   const appStateContext = useContext(AppStateContext)
   const ui = appStateContext?.state.frontendSettings?.ui
 
@@ -43,6 +45,7 @@ const Layout = () => {
   useEffect(() => {
     if (!appStateContext?.state.isLoading) {
       setLogo(ui?.logo || Contoso)
+      setOzLogo(Oz)
     }
   }, [appStateContext?.state.isLoading])
 
@@ -80,7 +83,7 @@ const Layout = () => {
           <Stack horizontal verticalAlign="center">
             <img src={logo} className={styles.headerIcon} aria-hidden="true" alt="" />
             <Link to="/" className={styles.headerTitleContainer}>
-              <h1 className={styles.headerTitle}>{ui?.title}</h1>
+              <h1 className={styles.headerTitle + ' ' + 'title-font'}>{ui?.title}</h1>
             </Link>
           </Stack>
           <Stack horizontal tokens={{ childrenGap: 4 }} className={styles.shareButtonContainer}>
@@ -94,6 +97,7 @@ const Layout = () => {
           </Stack>
         </Stack>
       </header>
+
       <Outlet />
       <Dialog
         onDismiss={handleSharePanelDismiss}
@@ -132,6 +136,13 @@ const Layout = () => {
           </div>
         </Stack>
       </Dialog>
+
+      <footer className={styles.footer} role={'footer'}>
+        <div className={styles.footerContainer}>
+          <img src={oZlogo} className={styles.footerOz} aria-hidden="true" alt="" />
+          <p className={styles.footerText}>Bob may not always be accurate. Be sure to double-check its responses.</p>
+        </div>        
+      </footer>
     </div>
   )
 }

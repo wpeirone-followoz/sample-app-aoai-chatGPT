@@ -50,6 +50,9 @@ export const QuestionInput = ({ onSend, disabled, placeholder, clearOnSend, conv
     <Stack horizontal className={styles.questionInputContainer}>
       <TextField
         className={styles.questionInputTextArea}
+        styles={
+          {fieldGroup: {background: "transparent"}}
+        }
         placeholder={placeholder}
         multiline
         resizable={false}

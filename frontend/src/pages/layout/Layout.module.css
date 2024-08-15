@@ -5,7 +5,7 @@
 }
 
 .header {
-  background-color: #f2f2f2;
+  background: linear-gradient(90deg, rgba(0, 45, 119, 80%) 0%, rgba(0, 174, 64, 80%) 100%); 
 }
 
 .headerContainer {
@@ -28,7 +28,7 @@
   line-height: 28px;
   display: flex;
   align-items: flex-end;
-  color: #242424;
+  color: #fff;
 }
 
 .headerIcon {
@@ -98,6 +98,30 @@
   display: flex;
   align-items: center;
   color: #242424;
+}
+
+.footer {
+  background: #002B75; 
+  color: #fff;
+}
+
+.footerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 52px;
+}
+
+.footerOz{
+  margin-right: auto;
+  margin-left: 36px;
+}
+
+.footerText{
+  font-size: 11px;
+  text-align: center;
+  margin-right: auto;
+  margin-left: -114px;
 }
 
 @media (max-width: 480px) {

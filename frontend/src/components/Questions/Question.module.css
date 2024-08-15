@@ -1,0 +1,24 @@
+.question{
+  background-color: #c7d5ea;
+  background-image: url('../../assets/qIcon.svg');
+  background-position: 17px center;
+  background-repeat: no-repeat;
+  display: flex;
+  padding: 17px;
+  padding-left: 60px;
+  border-radius: 8px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  flex: 1 1 30%;
+  height: 85px;
+  align-items: center;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.question:hover{
+  background-color: #c0d0e8;
+  border: 1px solid #a5b8d5
+}
