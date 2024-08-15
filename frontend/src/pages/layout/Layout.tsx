@@ -8,6 +8,7 @@ import Contoso from '../../assets/Contoso.svg'
 import { HistoryButton, ShareButton } from '../../components/common/Button'
 import { AppStateContext } from '../../state/AppProvider'
 import Oz from '../../assets/Oz.png'
+import SbaLogo from '../../assets/SBA_logo.png'
 
 import styles from './Layout.module.css'
 
@@ -44,7 +45,7 @@ const Layout = () => {
 
   useEffect(() => {
     if (!appStateContext?.state.isLoading) {
-      setLogo(ui?.logo || Contoso)
+      setLogo(SbaLogo || ui?.logo || Contoso)
       setOzLogo(Oz)
     }
   }, [appStateContext?.state.isLoading])

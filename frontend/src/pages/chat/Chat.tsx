@@ -14,6 +14,7 @@ import { nord } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import styles from './Chat.module.css'
 import Contoso from '../../assets/Contoso.svg'
 import DynamicsGP from '../../assets/DynamicsGP.png'
+import ChatLogo from '../../assets/SBA_logo1.svg'
 import { XSSAllowTags } from '../../constants/sanatizeAllowables'
 
 
@@ -111,7 +112,7 @@ const Chat = () => {
 
   useEffect(() => {
     if (!appStateContext?.state.isLoading) {
-      setLogo(ui?.chat_logo || ui?.logo || Contoso)
+      setLogo(ChatLogo || ui?.chat_logo || ui?.logo || Contoso)
       setGpLogo(DynamicsGP)
     }
   }, [appStateContext?.state.isLoading])
