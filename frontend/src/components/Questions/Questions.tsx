@@ -4,7 +4,11 @@ import styles from './Questions.module.css'
 
 import Question from './Question';
 
-const Questions = (props: object) => {
+type QuestionsProps = {
+  onItemClick: (text: string) => void;
+}
+
+const Questions = (props: QuestionsProps) => {
   const textList= [
     {
       id: '01',
@@ -32,10 +36,14 @@ const Questions = (props: object) => {
     }
   ];
 
+  const handleClick = (text: string) => {
+    props.onItemClick(text);
+  };
+
   return (
     <div className={styles.questions}>      
       {textList.map((item) =>{
-        return <Question key={item.id} text={item.text}></Question>
+        return <Question key={item.id} text={item.text} onClick={handleClick}></Question>
       })}
     </div>
   );

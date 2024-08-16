@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Stack, TextField } from '@fluentui/react'
 import { SendRegular } from '@fluentui/react-icons'
 
@@ -12,10 +12,12 @@ interface Props {
   placeholder?: string
   clearOnSend?: boolean
   conversationId?: string
+  questionText: string
 }
 
-export const QuestionInput = ({ onSend, disabled, placeholder, clearOnSend, conversationId }: Props) => {
+export const QuestionInput = ({ onSend, disabled, placeholder, clearOnSend, conversationId, questionText }: Props) => {
   const [question, setQuestion] = useState<string>('')
+  const isQuestionUpdated = useRef(false);
 
   const sendQuestion = () => {
     if (disabled || !question.trim()) {
@@ -32,6 +34,19 @@ export const QuestionInput = ({ onSend, disabled, placeholder, clearOnSend, conv
       setQuestion('')
     }
   }
+
+  useEffect(() => {
+    setQuestion(questionText);
+    isQuestionUpdated.current= true;
+  }, [questionText]);
+
+  useEffect(() => {
+    if(isQuestionUpdated.current) {
+      sendQuestion();
+    }
+    isQuestionUpdated.current= false;
+  }, [isQuestionUpdated.current]);
+
 
   const onEnterPress = (ev: React.KeyboardEvent<Element>) => {
     if (ev.key === 'Enter' && !ev.shiftKey && !(ev.nativeEvent?.isComposing === true)) {

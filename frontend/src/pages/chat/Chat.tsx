@@ -70,6 +70,13 @@ const Chat = () => {
   const [logo, setLogo] = useState('') 
   const [gPlogo, setGpLogo] = useState('') 
 
+  const [itemText, setItemText] = useState('')
+
+  const handleItemClick = (text: string) => {
+    setItemText(text);
+    console.log(itemText)
+  };
+
   const errorDialogContentProps = {
     type: DialogType.close,
     title: errorMsg?.title,
@@ -784,7 +791,7 @@ const Chat = () => {
                 <h2 className={styles.chatEmptyStateSubtitle + ' ' + 'title-font'}>{ui?.chat_description}</h2>
                 <img src={gPlogo} className={styles.chatGPIcon} aria-hidden="true" />
 
-                <Questions></Questions>
+                <Questions onItemClick={handleItemClick}></Questions>
               </Stack>
             ) : (
               <div className={styles.chatMessageStream} style={{ marginBottom: isLoading ? '40px' : '0px' }} role="log">
@@ -921,6 +928,7 @@ const Chat = () => {
                   modalProps={modalProps}></Dialog>
               </Stack>
               <QuestionInput
+                questionText={itemText}
                 clearOnSend
                 placeholder="Type a new question..."
                 disabled={isLoading}
